@@ -1,0 +1,20 @@
+.searchBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e3e2e2;
+  height: 40px;
+  font-weight: bold;
+
+  & > * {
+    margin-right: 10px;
+  };
+
+  &:global > .test {
+    background: red;
+  }
+
+  :global {
+
+  }
+}

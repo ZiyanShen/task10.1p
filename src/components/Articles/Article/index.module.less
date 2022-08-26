@@ -1,0 +1,34 @@
+.col {
+  text-align: center;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+
+}
+
+.description {
+  color: gray;
+  font-weight: bold;
+  text-align: left;
+}
+
+.info {
+  :global {
+    img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .ant-col {
+      display: flex;
+      justify-content: left;
+    }
+  }
+}
