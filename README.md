@@ -1,15 +1,18 @@
 # Install Dependencies
-```
-yarn
+```sh
+# install front dependencies
+yarn 
+# intsall bakend dependencies
+cd bakend && yarn 
 ```
 
 # Run Project
-```
-npm start # start front
-npm run serve  # start backend
+```sh
+yarn start # start front
+yarn serve  # start backend
 ```
 # build Project
 
 ```
-npm build
+yarn build
 ```
