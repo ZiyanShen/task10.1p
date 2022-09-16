@@ -1,6 +1,6 @@
 import React from 'react';
 import {Layout} from "antd";
-import styles from "../index.module.less";
+import styles from "./main.module.less";
 import Header from "../components/Header";
 import {Outlet} from "react-router-dom"
 import Footer from "../components/Footer";

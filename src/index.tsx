@@ -4,6 +4,7 @@ import {Provider} from 'react-redux';
 import App from './App';
 import store from "./store/store";
 import {HashRouter} from "react-router-dom";
+import "./index.less"
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );

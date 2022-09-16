@@ -2,7 +2,6 @@ import React, {useRef} from 'react';
 import {Carousel} from "antd";
 import {usePhotos2Query} from "../../api/api";
 import styles from "./index.module.less"
-import MyImage from "../MyImage";
 
 function MyCarousel(props) {
     const page = useRef(Math.round(Math.random() * 9) + 1)

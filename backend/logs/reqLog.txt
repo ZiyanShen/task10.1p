@@ -171,3 +171,5 @@
 20220821	21:58:19	3d1cee76-64db-41cb-b570-fc021f46df72	GET	undefined	/favicon.ico
 20220825	19:16:57	ac011bb2-87cf-48d9-8536-3ef8ab814d30	GET	undefined	/static/js/main.d6ec20e0.js.map
 20220825	19:29:27	77c9622a-c3ae-4714-aa9e-f8d3eef8d2a5	GET	undefined	/static/css/main.494d1a1b.css.map
+20220916	15:55:30	bbbd0701-cea7-4e7f-8d12-8e11b07bf8bc	POST	undefined	/email?23=3wr
+20220916	15:56:43	fcdc74bc-c3ac-4f40-8e6e-e5f525266ef2	POST	undefined	/register?email=zhaohao@qq.com&username=helloworld&password=123456
