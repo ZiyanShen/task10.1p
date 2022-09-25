@@ -5,29 +5,31 @@ const path = require('path');
 const {logger} = require("./middleware/logEvents");
 const errorHandler = require("./middleware/errorHandler");
 const verifyJWT = require("./middleware/verifyJWT");
-
+const cookieParser = require('cookie-parser')
 
 const PORT = process.env.PORT || 3500;
 
 
-
 // json
 app.use(express.json())
+// urlencoded
+app.use(express.urlencoded({extended: false}));
+//cookie
+app.use(cookieParser())
 
 app.use('/', express.static(path.join(__dirname, '/public')));
 app.use('/register', require('./routes/register'));
 app.use('/login', require('./routes/auth'));
 app.use('/refresh', require('./routes/refresh'));
-app.use('/photos',require('./routes/photo'))
-
-// urlencoded
-app.use(express.urlencoded({extended: false}));
+app.use('/photos', require('./routes/photo'))
 
 
-app.use(verifyJWT);
+
+
 // routers
 app.use("/email", require("./routes/email"))
-
+app.use(verifyJWT);
+app.use("/post", require("./routes/posts"))
 // logger
 app.use(logger)
 

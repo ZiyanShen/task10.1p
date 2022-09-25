@@ -17,18 +17,21 @@ const handleLogin = async (req, res) => {
 			{
 				"UserInfo": {
 					"username": foundUser.username,
-					"email": foundUser.email
+					"email": foundUser.email,
+					"userId": foundUser.userId
 				}
 			},
 			process.env.ACCESS_TOKEN_SECRET,
-			{expiresIn: '10s'}
+			{expiresIn: '120s'}
 		);
 		const newRefreshToken = jwt.sign(
 			{
 				"username": foundUser.username,
+				"email": foundUser.email,
+				"userId": foundUser.userId
 			},
 			process.env.REFRESH_TOKEN_SECRET,
-			{expiresIn: '15s'}
+			{expiresIn: '7200s'}
 		);
 
 		// Changed to let keyword
@@ -48,8 +51,7 @@ const handleLogin = async (req, res) => {
 				3) If 1 & 2, reuse detection is needed to clear all RTs when user logs in
 			*/
 			const refreshToken = cookies.jwt;
-			const {refreshToken: foundToken} = await User.findUserByToken(refreshToken)
-
+			const foundToken = (await User.findUserByToken(refreshToken))?.refreshToken
 			// Detected refresh token reuse!
 			if (!foundToken) {
 				// clear out ALL previous refresh tokens
@@ -62,7 +64,6 @@ const handleLogin = async (req, res) => {
 		// Saving refreshToken with current user
 		foundUser.refreshToken = [...newRefreshTokenArray, newRefreshToken];
 		const result = await User.modifyUser({email: foundUser.email}, {refreshToken: foundUser.refreshToken});
-
 		// Creates Secure Cookie with refresh token
 		res.cookie('jwt', newRefreshToken, {
 			httpOnly: true,

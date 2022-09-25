@@ -1,6 +1,6 @@
 import { api } from "./api";
 
-export const registerSlice = api.injectEndpoints({
+export const registerApiSlice = api.injectEndpoints({
     endpoints: builder => ({
         register: builder.mutation({
             query: credentials => ({
@@ -14,4 +14,4 @@ export const registerSlice = api.injectEndpoints({
 
 export const {
     useRegisterMutation
-} = registerSlice
+} = registerApiSlice

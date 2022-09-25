@@ -16,3 +16,6 @@
 20220801	16:54:12	17bddec3-314f-4af8-8fc3-027326ca0d22	Error: ENOENT: no such file or directory, stat '/mnt/c/Users/ZH/Desktop/homework/2.1P/backend/public/static/js/main.bb8b0891.js'
 20220801	16:54:12	34c2ca23-e5cd-4e7c-8fa1-f0205927d526	Error: ENOENT: no such file or directory, stat '/mnt/c/Users/ZH/Desktop/homework/2.1P/backend/public/static/css/main.283e4594.css'
 20220801	16:54:12	cae2e5a4-2abd-4cef-a60e-91d38ee37c77	Error: ENOENT: no such file or directory, stat '/mnt/c/Users/ZH/Desktop/homework/2.1P/backend/public/manifest.json'
+20220921	00:33:09	d72ff928-2c8f-4d95-8828-1e8cafb42a48	TypeError: ref is not a function
+20220924	20:30:33	6aca8e73-c500-4bae-9a28-07256d352bad	PayloadTooLargeError: request entity too large
+20220924	20:30:47	fe0172cc-88c3-40f7-ac3e-513407d3418f	PayloadTooLargeError: request entity too large

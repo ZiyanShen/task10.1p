@@ -62,15 +62,15 @@ class User {
 		}
 		if (!userId) return null
 		const user = await User.#users.doc(userId).get()
-		return user.data()
+		return {...user.data(), userId}
 	}
 
 	static async findUserByToken(refreshToken) {
 		const snapshot = await User.#users.where("refreshToken", "array-contains", refreshToken).get();
-		let user = {}
+		let user = null
 		if (!snapshot.empty) {
 			snapshot.forEach(doc => {
-				user = doc.data()
+				user = {...doc.data(), userId: doc.id}
 			})
 		}
 		return user
@@ -81,4 +81,5 @@ class User {
 module.exports = {
 	User
 }
+
 

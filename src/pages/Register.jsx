@@ -5,7 +5,7 @@ import {
 } from 'antd';
 import React from 'react';
 import {useNavigate} from "react-router-dom";
-import {useRegisterMutation} from "../api/registerSlice";
+import {useRegisterMutation} from "../api/registerApiSlice";
 
 const formItemLayout = {
 	labelCol: {

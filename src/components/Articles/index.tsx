@@ -42,9 +42,6 @@ function Articles(props: { title: string }) {
                 All {props.title}</Button></div>
         title = <div className={styles.title}>Featured {props.title}</div>
     }
-    if (isError) {
-        refetch()
-    }
     return (
         <div>
             {title}

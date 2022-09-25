@@ -16,9 +16,6 @@ function MyCarousel(props) {
     if (isSuccess) {
         content = data.map(item => <img key={item.id} className={styles.photo} src={item.download_url} alt=""/>)
     }
-    if (isError) {
-        refetch()
-    }
     return (
         <Carousel autoplay className={styles.carousel}>
             {content}

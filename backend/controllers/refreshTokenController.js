@@ -6,9 +6,7 @@ const handleRefreshToken = async (req, res) => {
 	if (!cookies?.jwt) return res.sendStatus(401);
 	const refreshToken = cookies.jwt;
 	res.clearCookie('jwt', {httpOnly: true, sameSite: 'None', secure: true});
-
 	const foundUser = await User.findUserByToken(refreshToken)
-
 	// Detected refresh token reuse!
 	if (!foundUser) {
 		jwt.verify(
@@ -18,8 +16,9 @@ const handleRefreshToken = async (req, res) => {
 				if (err) return res.sendStatus(403); //Forbidden
 				// Delete refresh tokens of hacked user
 				const hackedUser = await User.getUser({username: decoded.username})
+				console.log(hackedUser,"hackedUser")
 				hackedUser.refreshToken = [];
-				const result = await User.modifyUser({username: foundUser.username}, {refreshToken: hackedUser.refreshToken});
+				const result = await User.modifyUser({username: hackedUser.username}, {refreshToken: hackedUser.refreshToken});
 			}
 		)
 		return res.sendStatus(403); //Forbidden
@@ -38,27 +37,31 @@ const handleRefreshToken = async (req, res) => {
 				const result = await User.modifyUser({username: foundUser.username}, {refreshToken: foundUser.refreshToken});
 			}
 			if (err || foundUser.username !== decoded.username) return res.sendStatus(403);
-
 			// Refresh token was still valid
 			const accessToken = jwt.sign(
 				{
 					"UserInfo": {
 						"username": decoded.username,
-						"email": decoded.email
+						"email": decoded.email,
+						"userId": decoded.userId
 					}
 				},
 				process.env.ACCESS_TOKEN_SECRET,
-				{expiresIn: '10s'}
+				{expiresIn: '120s'}
 			);
 
 			const newRefreshToken = jwt.sign(
-				{"username": foundUser.username},
+				{
+					"username": foundUser.username,
+					"email": foundUser.email,
+					"userId": foundUser.userId
+				},
 				process.env.REFRESH_TOKEN_SECRET,
-				{expiresIn: '15s'}
+				{expiresIn: '7200s'}
 			);
 			// Saving refreshToken with current user
 			foundUser.refreshToken = [...newRefreshTokenArray, newRefreshToken];
-			const result = await User.modifyUser({username:foundUser.username},{refreshToken:foundUser.refreshToken});
+			const result = await User.modifyUser({username: foundUser.username}, {refreshToken: foundUser.refreshToken});
 
 			// Creates Secure Cookie with refresh token
 			res.cookie('jwt', newRefreshToken, {
