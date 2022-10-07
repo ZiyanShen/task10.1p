@@ -2,9 +2,11 @@ const {logEvents} = require("../middleware/logEvents");
 const nodemailer = require("nodemailer");
 
 async function sendEmail(data) {
+    console.log("data = ", data) 
     let transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST,
         port: process.env.EMAIL_PORT,
+        service:'qq',
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASSWORD,
